@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TrainsSkeleton
+{
+    public class Deque<T>
+    {
+        private const int defaultCapacity = 16;
+        private List<T> trains;
+        private int capacity;
+        private int count;
+
+        public int Count
+        {
+            get { return count; }
+            private set { count = value; }
+        }
+        public int Capacity
+        {
+            get { return capacity; }
+            set { capacity = value; }
+        }
+        public Deque()
+        {
+           trains = new List<T>(defaultCapacity);
+            this.count = 0;
+        }
+        public Deque(int capacity)
+        {
+               this.trains = new List<T>(capacity);
+            this.count = 0;
+        }
+
+
+        //Metodi
+        public void AddFront(T item)
+        {
+           trains.Insert(0, item);
+            count++;
+        }
+        public void AddBack(T item)
+        {
+            trains.Add(item);
+            count++;
+        }
+        public T RemoveFront()
+        {
+            T item = trains[0];
+            trains.RemoveAt(0);
+            count--;
+            return item;
+        }
+        public T RemoveBack()
+        {
+            T item = trains[trains.Count-1];
+            trains.RemoveAt(trains.Count-1);
+            count--;
+            return item;
+        }
+        public T GetFront()
+        {
+            return trains.First();
+        }
+        public T GetBack()
+        {
+            return trains.Last();
+        }
+
+
+
+
+
+    }
+}
